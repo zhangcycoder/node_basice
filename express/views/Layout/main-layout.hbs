@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/index.css">
+    {{#if productCSS}}
+    <link rel="stylesheet" href="/css/product.css">
+    {{/if}}
+    {{#if shopCSS}}
+    <link rel="stylesheet" href="/css/shop.css">
+    {{/if}}
+
+</head>
+
+<body>
+    <header class="shop-header">
+        <nav class="shop-nav">
+            <ul class="shop-list">
+                <li class="shop-list-item"><a class="{{#if isActives}}active{{/if}}" href="/">商店</a> </li>
+                <li class="shop-list-item"> <a href="/admin/add-product">添加产品</a></li>
+                <li></li>
+            </ul>
+        </nav>
+    </header>
+    {{{body}}}
+</body>
+
+</html>
