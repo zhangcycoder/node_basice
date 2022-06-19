@@ -1,24 +1,36 @@
-doctype html
-html(lang="en")
-   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加产品</title>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/product.css">
-</head>
+//- extends layouts/main-layout.pug
+//- block content
+//- doctype html
+//- html(lang="en")
+//-    <head>
+//-     <meta charset="UTF-8">
+//-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//-     <title>添加产品</title>
+//-     <link rel="stylesheet" href="/css/index.css">
+//-     <link rel="stylesheet" href="/css/product.css">
+//- </head>
 
-    body 
-        header.shop-header
-            nav.shop-nav
-                ul.shop-list 
-                    li.shop-list-item
-                        a.active(href="/") 商店
-                    li.shop-list-item 
-                        a(href="/admin/add-product") 添加产品
-        form(method="POST", action="/admin/product")
-            .product-wrapper    
-                input(type="text", name="title")
-                button(type="submit") 添加
+//-     body 
+//-         header.shop-header
+//-             nav.shop-nav
+//-                 ul.shop-list 
+//-                     li.shop-list-item
+//-                         a.active(href="/") 商店
+//-                     li.shop-list-item 
+//-                         a(href="/admin/add-product") 添加产品
+//-         form(method="POST", action="/admin/product")
+//-             .product-wrapper    
+//-                 input(type="text", name="title")
+//-                 button(type="submit") 添加
            
+
+extends layout/main-layout.pug
+block styles
+    <link rel="stylesheet" href="/css/product.css">
+
+block content
+    form(method="POST", action="/admin/product")
+        .product-wrapper    
+            input(type="text", name="title")
+            button(type="submit") 添加

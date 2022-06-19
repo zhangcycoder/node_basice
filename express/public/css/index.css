@@ -20,7 +20,10 @@ ul {
     align-items: center;
 }
 
-.shop-list-item>a {
+.shop-list-item a {
     color: #fff;
     margin: 0 10px;
+}
+.shop-list-item .active{
+    color:#002cff
 }
