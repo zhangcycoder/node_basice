@@ -4,7 +4,10 @@ const express = require('express')
 const bodyParser = require('body-parser')// 解析body 
 const app = express()
 
-const adminRoutes = require('./routes/admin')
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
+const { adminRoutes, products } = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 app.use(bodyParser.urlencoded({ extended: false }))
 // 暴露出来静态资源

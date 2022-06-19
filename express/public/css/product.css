@@ -1,0 +1,12 @@
+.product-wrapper{
+    margin: 50px auto;
+    width: 300px;
+}
+.product-wrapper>input{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.product-wrapper>button{
+    width: 100%;
+
+}
