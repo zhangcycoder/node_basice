@@ -4,8 +4,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title 商店
+        title #{pageTitle}
         link(rel="stylesheet", href="/css/index.css")
+        link(rel="stylesheet", href="/css/shop.css")
     body 
         header.shop-header
             nav.shop-nav
@@ -14,3 +15,19 @@ html(lang="en")
                         a.active(href="/") 商店
                     li.shop-list-item 
                         a(href="/admin/add-product") 添加产品
+        main
+            if products.length>0
+                .grid 
+                    each product in products
+                        article.card.product-item 
+                            header.card-header 
+                                h1.paoduct-title #{product.title}
+                            .card-image 
+                                img(src="https://m.360buyimg.com/mobilecms/s750x750_jfs/t1/125477/21/7459/146321/5f153694E08c668d7/cbb3d4d622d99877.jpg!q80.dpg", alt="衣服")
+                            .card-content 
+                                h2.product-price $59
+                                p.product-description 一件网上流行的衣服
+                                .card-actions 
+                                    button.btn 添加到购物车
+            else
+                h1 没有产品 

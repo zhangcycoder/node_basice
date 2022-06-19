@@ -1,0 +1,35 @@
+main{
+    padding: 1rem;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.card{
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+}
+.card-header,
+.card-header h1
+{
+margin: 0;
+}
+.card-image{
+    width: 90%;
+    margin: auto;
+}
+.card-image img{
+    width: 100%;
+}
+
+.btn{
+    color:red;
+    background-color: white;
+    cursor: pointer;
+}
