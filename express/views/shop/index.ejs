@@ -1,0 +1,39 @@
+<%- include('../Layout/include/head.ejs')%>
+
+    <link rel="stylesheet" href="/css/shop.css">
+    </head>
+
+    <body>
+        <%- include('../Layout/include/navaction.ejs')%>
+
+            <main>
+                <% if(hasProduct){%>
+                    <div class="grid">
+                        <% for(let product of products ){%>
+                            <article class="product-item  card">
+                                <header class="paoduct-title">
+                                    <h1>
+                                        <%=product.title%>
+                                    </h1>
+                                </header>
+                                <div class="card-image ">
+                                    <img src="<%=product.image%>" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="product-price">$<%=product.price%>
+                                    </h2>
+                                    <p class="product-description">
+                                        <%=product.description%>
+                                    </p>
+                                    <div class="card-actions">
+                                        <button class="add">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </article>
+                            <%}%>
+                    </div>
+                    <% } else{%>
+                        <h1>暂时没有数据哦~</h1>
+                        <%}%>
+            </main>
+            <%- include('../Layout/include/end.ejs')%>

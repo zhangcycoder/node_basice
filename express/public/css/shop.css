@@ -14,6 +14,7 @@ main{
     width: 200px;
     text-align: center;
     padding: 5px;
+    margin-bottom: 8px;
 }
 .card-header,
 .card-header h1
@@ -22,6 +23,7 @@ margin: 0;
 }
 .card-image{
     width: 90%;
+    min-width: 90%;
     margin: auto;
 }
 .card-image img{

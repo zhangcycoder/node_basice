@@ -1,0 +1,14 @@
+<header class="shop-header">
+    <nav class="shop-nav">
+        <ul class="shop-list">
+            <li class="shop-list-item"><a class="<%= path==='/'?'active':''  %>" href="/">商店</a> </li>
+            <li class="shop-list-item"><a class="<%= path==='/productList'?'active':''  %>" href="/productList">产品</a>
+            </li>
+            <li class="shop-list-item"><a class="<%= path==='/cart'?'active':''  %>" href="/cart">购物车</a> </li>
+            <li class="shop-list-item"><a class="<%= path==='/admin/add_product'?'active':''  %>"
+                    href="/admin/add_product">添加产品</a> </li>
+            <li class="shop-list-item"><a class="<%= path==='/admin/productList'?'active':''  %>"
+                    href="/admin/productList">管理产品</a> </li>
+        </ul>
+    </nav>
+</header>

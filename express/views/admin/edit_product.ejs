@@ -1,0 +1,28 @@
+<%- include('../Layout/include/head.ejs')%>
+
+    <link rel="stylesheet" href="/css/shop.css">
+    </head>
+
+    <body>
+        <%- include('../Layout/include/navaction.ejs')%>
+            <form method="post" action="/admin/api/edit_product">
+                <div>修改产品 </div>
+                <div class="product-wrapper">
+                    <input type="text" name="id" value="<%=productDetail.id%>" style="display: none;">
+                    标题:<input type="text" name="title" value="<%=productDetail.title%>">
+                    <br />
+                    价格:
+                    <input type="text" name="price" value="<%=productDetail.price%>">
+                    <br />
+                    图片:
+                    <input type="text" name="image" value="<%=productDetail.image%>">
+                    <br />
+
+                    <label>描述:</label>
+                    <textarea name="description" id="" rows="5" value="<%=productDetail.description%>"></textarea>
+                    <br />
+
+                    <button type="submit">确认修改 </button>
+                </div>
+            </form>
+            <%- include('../Layout/include/end.ejs')%>
