@@ -2,8 +2,7 @@ const ProductMode = require('../modules/product');
 const CartMode = require('../modules/cart')
 // 商店 
 exports.getAllProducts = (req, res, next) => {
-    ProductMode.getAll().then(([rows, fieldData]) => {
-        console.log(111)
+    ProductMode.findAll().then(rows => {
         res.render('shop/index', {
             products: rows,
             pageTitle: '产品',
@@ -12,11 +11,11 @@ exports.getAllProducts = (req, res, next) => {
             path: '/',
             hasProduct: rows.length > 0
         })
-    })
+    }).catch(err => console.log(err, 'err'))
 }
 // 全部产品页面
 exports.getShopProducts = (req, res, next) => {
-    ProductMode.getAll().then(([rows, fieldData]) => {
+    ProductMode.findAll().then(rows => {
         res.render('shop/productList', {
             products: rows,
             pageTitle: '产品',
@@ -25,7 +24,7 @@ exports.getShopProducts = (req, res, next) => {
             path: '/productList',
             hasProduct: rows.length > 0
         })
-    }).catch(e => console.log(e))
+    }).catch(err => console.log(err, 'err'))
 }
 
 exports.setAddcart = (req, res, next) => {
@@ -61,14 +60,11 @@ exports.getCheckout = (req, res, next) => {
 // 结算页
 exports.getProductDetail = (req, res, next) => {
     const prodId = req.params.productId;
-    ProductMode.findById(prodId).then(([rows, file]) => {
-        console.log(rows)
+    ProductMode.findByPk(prodId).then(rows => {
         res.render('shop/product_detail', {
             pageTitle: "商品详情",
             path: "shop/product_detail",
-            product: rows[0],
-            hasProduct: rows.length > 0
+            product: rows,
         })
-    })
-
+    }).catch(err => console.log(err, 'err'))
 }

@@ -5,14 +5,15 @@
 
     <body>
         <%- include('../Layout/include/navaction.ejs')%>
-            <article class="product-item  card">
+            <article class="product-item" style="text-align: center;">
                 <header class="paoduct-title">
                     <h1>
                         <%=product.title%>
                     </h1>
                 </header>
+                <hr />
                 <div class="card-image ">
-                    <img src="<%=product.imageUrl%>" alt="">
+                    <img src="<%=product.imageUrl%>" alt="" style="width:300px">
                 </div>
                 <div class="card-content">
                     <h2 class="product-price">$<%=product.price%>
