@@ -15,19 +15,22 @@ exports.setPostProducts = (req, res, next) => {
         return
     }
     const product = new ProductMode(req.body)
-    product.save()
-    res.redirect('/')//重定向 express内部做了
+    product.save().then(sult => {
+        res.redirect('/')//重定向 express内部做了
+    }).catch(e => console.log(e, 'ee'))
 }
 
 // 编辑商品 
 exports.getAdminEditProduct = (req, res, next) => {
     let id = req.query.id
     ProductMode.getProduct(id, (value) => {
-        res.render('admin/edit_product.ejs', {
-            pageTitle: "编辑商品",
-            path: "/admin/edit_product",
-            productDetail: value
-        })
+        if (value) {
+            res.render('admin/edit_product.ejs', {
+                pageTitle: "编辑商品",
+                path: "/admin/edit_product",
+                productDetail: value
+            })
+        }
     })
 }
 
@@ -42,7 +45,7 @@ exports.setAdminEditProduct = (req, res, next) => {
     res.redirect('/admin/productList')
 }
 exports.getProductList = (req, res, next) => {
-    ProductMode.getAll((products) => {
+    ProductMode.getAll().then(([products, file]) => {
         res.render('admin/productList', {
             products: products,
             pageTitle: '产品',

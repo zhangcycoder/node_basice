@@ -17,7 +17,7 @@
                                     </h1>
                                 </header>
                                 <div class="card-image ">
-                                    <img src="<%=product.image%>" alt="">
+                                    <img src="<%=product.imageUrl%>" alt="">
                                 </div>
                                 <div class="card-content">
                                     <h2 class="product-price">$<%=product.price%>
@@ -25,8 +25,11 @@
                                     <p class="product-description">
                                         <%=product.description%>
                                     </p>
+                                    <a href="/productDetail/<%=product.id%>">商品 详情</a>
                                     <div class="card-actions">
-                                        <button class="add">添加到购物车</button>
+                                        <form method="post" action="/api/Addcart/<%=product.id%>">
+                                            <button type="submit" class="add">添加到购物车</button>
+                                        </form>
                                     </div>
                                 </div>
                             </article>
