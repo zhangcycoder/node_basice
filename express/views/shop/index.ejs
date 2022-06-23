@@ -26,7 +26,9 @@
                                         <%=product.description%>
                                     </p>
                                     <div class="card-actions">
-                                        <button class="add">添加到购物车</button>
+                                        <form method="post" action="/api/Addcart/<%=product.id%>">
+                                            <button type="submit" class="add">添加到购物车</button>
+                                        </form>
                                     </div>
                                 </div>
                             </article>

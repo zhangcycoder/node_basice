@@ -1,0 +1,27 @@
+<%- include('../Layout/include/head.ejs')%>
+
+    <link rel="stylesheet" href="/css/shop.css">
+    </head>
+
+    <body>
+        <%- include('../Layout/include/navaction.ejs')%>
+            <main>
+                <% if(orders.length===0){%>
+                    <h1>暂时没有订单信息</h1>
+                    <%}else{%>
+                        <%orders.forEach((order)=>{%>
+                            <div>
+                                <h2>订单编号:<%=order.id%>
+                                </h2>
+                                <div>
+                                    <%order.products.forEach((item)=>{%>
+                                        <div>
+                                            订单名称 <%=item.title%> - 订单数量:<%=item.orderItem.quantity%>
+                                        </div>
+                                        <%})%>
+                                </div>
+                            </div>
+                            <%})%>
+                                <%}%>
+            </main>
+            <%- include('../Layout/include/end.ejs')%>

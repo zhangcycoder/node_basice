@@ -15,11 +15,11 @@ exports.setPostProducts = (req, res, next) => {
         res.redirect('/admin/add_product')
         return
     }
-    ProductMode.create({
+    req.user.createProduct({
         title: title,
         price: price,
         imageUrl: image,
-        description: description
+        description: description,
     }).then(result => {
         res.redirect('/')//重定向 express内部做了
 
@@ -30,16 +30,19 @@ exports.setPostProducts = (req, res, next) => {
 
 // 编辑商品 
 exports.getAdminEditProduct = (req, res, next) => {
-    ProductMode.findByPk(req.query.id).then(result => {
-        if (!result) {
-            res.redirect('/')
-        }
-        res.render('admin/edit_product.ejs', {
-            pageTitle: "编辑商品",
-            path: "/admin/edit_product",
-            productDetail: result
+    req.user.getProducts({ where: { id: req.query.id } })
+        .then(products => {
+            const product = products[0]
+            if (!product) {
+                res.redirect('/')
+            }
+            res.render('admin/edit_product.ejs', {
+                pageTitle: "编辑商品",
+                path: "/admin/edit_product",
+                productDetail: product
+            })
         })
-    }).catch(err => console.log(err, 'err'))
+        .catch(e => console.log(e))
 }
 
 // 删除商品 
@@ -71,14 +74,14 @@ exports.setAdminEditProduct = (req, res, next) => {
     }).catch(err => console.log(err, 'err'))
 }
 exports.getProductList = (req, res, next) => {
-    ProductMode.findAll().then(result => {
+    req.user.getProducts().then(result => {
         res.render('admin/productList', {
             products: result,
-            pageTitle: '产品',
+            pageTitle: '管理产品',
             isActives: true,
             shopCSS: true,
             path: '/admin/productList',
             hasProduct: result.length > 0
         })
-    }).catch(err => console.log(err, 'err'))
+    })
 }

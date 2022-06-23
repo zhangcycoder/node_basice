@@ -25,6 +25,10 @@
                                     <p class="product-description">
                                         <%=product.description%>
                                     </p>
+                                    <P>
+                                        <%=product.cartItem.quantity%>
+                                            件
+                                    </P>
                                     <div class="card-actions">
                                         <form method="post" action="/api/delProduct/<%=product.id%>">
                                             <button type="submit" class="add">移除该商品</button>
@@ -35,9 +39,12 @@
                             <%}%>
                     </div>
                     <div>总价: <%=totalPrice%>
+                            <form action="/create-order" method="post">
+                                <button type="submit">结算</button>
+                            </form>
                     </div>
                     <% } else{%>
-                        <h1>暂时没有数据哦~</h1>
+                        <h1>还没有宝贝哦 快去添加吧~</h1>
                         <%}%>
             </main>
             <%- include('../Layout/include/end.ejs')%>

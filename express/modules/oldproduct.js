@@ -1,3 +1,4 @@
+// 弃用
 const db = require('../utils/database')
 module.exports = class Product {
     constructor({ title, price, image, description }) {

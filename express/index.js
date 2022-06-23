@@ -15,22 +15,56 @@ const { getErrorController } = require('./controllers/error')
 const sequelize = require('./utils/database')
 const ProductMode = require('./modules/product.js')
 const UserMode = require('./modules/user.js')
+const Cart = require('./modules/cart')
+const CartItem = require('./modules/cart-item')
+const Order = require('./modules/order')
+const OrderItem = require('./modules/order-Item')
+const User = require('./modules/user.js')
 app.use(bodyParser.urlencoded({ extended: false }))
 // 暴露出来静态资源
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.use((req, res, next) => {
+    UserMode.findByPk(1).then(user => {
+        req.user = user;
+        next()
+    })
+})
 
 app.use('/admin', adminRoutes)
 app.use(shopRoutes)
 app.use(getErrorController)
 
-app.listen(3000)
 
 ProductMode.belongsTo(UserMode, {
     constraints: true,
     onDelete: 'CASCADE'
 });
 UserMode.hasMany(ProductMode)
-sequelize.sync({ force: true }).then(result => { }).catch(e => console.log(e))
+UserMode.hasOne(Cart)
+Cart.belongsTo(UserMode);
+Cart.belongsToMany(ProductMode, { through: CartItem });
+ProductMode.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(ProductMode, { through: OrderItem })
+
+sequelize.sync({ force: true })
+    .then(result => {
+        return UserMode.findByPk(1)
+    }).then(user => {
+        if (!user) {
+            return UserMode.create({ name: 'hamo', email: 'hamo@a.com' })
+        }
+        return user;
+    })
+    .then(user => {
+        return user.createCart()
+    })
+    .then(() => {
+        app.listen(3000)
+    })
+    .catch(e => console.log(e))
 
 
 
